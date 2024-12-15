@@ -348,8 +348,11 @@ class VkontakteWrapper {
 
 }
 
-export function initialize(readyCallback) {
+function initializeWrapper() {
 	if (typeof window !== 'undefined') {
-		window.vkontakteWrapper = new VkontakteWrapper(readyCallback);
+		window.vkontakteWrapper = new VkontakteWrapper(() => {
+			// Application initialization on wrapper ready callback.
+			application.initialize();
+		});
 	}
 }
